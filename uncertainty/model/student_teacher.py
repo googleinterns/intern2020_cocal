@@ -85,12 +85,6 @@ class PseudoLabeling:
                 y_true = tf.concat((y_true, y_true_i[:n_remain]), 0)
                 
 
-            #x_conf, y_conf = x_conf_i, y_conf_i
-            
-            
-            # print("#conf =", x_conf.shape[0],
-            #       "precision =", tf.math.reduce_mean(tf.cast(tf.cast(y_conf, tf.int64) == tf.cast(y_true, tf.int64), tf.float32)).numpy())
-
             return x_conf, y_conf
 
         try:
@@ -119,8 +113,6 @@ class PseudoLabeling:
         else:
             x, y = x_src, y_src
         return x, y
-
-        #return (x_src, x_tar), (tf.cast(y_src, tf.int64), tf.cast(y_tar, tf.int64))
 
         
 class TargetPseudoLabeling:
@@ -167,8 +159,6 @@ class TargetPseudoLabeling:
                 if any(conf==1):
                     break
                         
-            # print("#conf =", x_conf_i.shape[0],
-            #       "precision =", tf.math.reduce_mean(tf.cast(tf.cast(y_conf_i, tf.int64) == tf.cast(y_true_i, tf.int64), tf.float32)).numpy())
             return x_conf_i, y_conf_i
 
         return sample_from_target()
